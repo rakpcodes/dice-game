@@ -16,3 +16,21 @@ const currentBank2 = document.querySelector('#current--2')
 const btnNew = document.querySelector('.btn--new')
 const btnRoll = document.querySelector('.btn--roll')
 const btnHold = document.querySelector('.btn--hold')
+
+// Starting Conditions
+score1.textContent = 0
+score2.textContent = 0
+dice.classList.add('hidden')
+
+// Rolling Dice Functionality
+
+btnRoll.addEventListener('click', function () {
+
+    // Generate Random Dice Roll
+
+    const randomNum = Math.floor(Math.random() * 6) + 1
+
+    // Display Dice
+
+    //Check for 1, if rolled, change players
+})
