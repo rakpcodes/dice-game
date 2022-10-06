@@ -26,41 +26,72 @@ dice.classList.add('hidden')
 const scores = [0, 0]
 let currentScore = 0
 let activePlayer = 0
+let playing = true
+
+//Settings when active player is changed
+const switchPlayer = () => {
+    document.querySelector(`#current--${activePlayer}`).textContent = 0 // resets current score for new active player
+    currentScore = 0; // resets 'current' score for old active player
+    activePlayer = activePlayer === 0 ? 1 : 0; // decides which player is active
+    player1.classList.toggle('player--active')
+    player2.classList.toggle('player--active')
+}
+
 
 // Rolling Dice Functionality
 btnRoll.addEventListener('click', function () {
 
-    // Generate Random Dice Roll
-    const randomNum = Math.floor(Math.random() * 5) + 2
+    if (playing) {
 
-    // Display Dice
-    dice.classList.remove('hidden')
-    dice.src = `dice-${randomNum}.png`
+        // Generate Random Dice Roll
+        const randomNum = Math.floor(Math.random() * 6) + 1
 
-    //Check for 1, if rolled, change players
+        // Display Dice
+        dice.classList.remove('hidden')
+        dice.src = `dice-${randomNum}.png`
 
-    if (randomNum !== 1) {
-        currentScore += randomNum; // increases the 'current' score
-        document.querySelector(`#current--${activePlayer}`).textContent = currentScore // selects and updates score for the active player
-    } else {
-        document.querySelector(`#current--${activePlayer}`).textContent = 0 // resets current score for new active player
-        currentScore = 0; // resets 'current' score for old active player
-        activePlayer = activePlayer === 0 ? 1 : 0; // decides which player is active
-        player1.classList.toggle('player--active')
-        player2.classList.toggle('player--active')
+        //Check for 1, if rolled, change players
 
+        if (randomNum !== 1) {
+            currentScore += randomNum; // increases the 'current' score
+            document.querySelector(`#current--${activePlayer}`).textContent = currentScore // selects and updates score for the active player
+        } else {
+            switchPlayer()
+        }
     }
 })
 
 btnHold.addEventListener('click', function () {
 
+    if (playing) {
 
-    document.querySelector(`#current--${activePlayer}`).textContent = 0 // resets current score for new active player
-    currentScore = 0; // resets 'current' score for old active player
-    activePlayer = activePlayer === 0 ? 1 : 0; // decides which player is active
+        // 1. Add current score to active player's score
 
-    player1.classList.toggle('player--active')
-    player2.classList.toggle('player--active')
+        scores[activePlayer] += currentScore
+        document.querySelector(`#score--${activePlayer}`).textContent = scores[activePlayer]
 
+        // 2. Setting for winnng score (Default 100)
+
+        if (scores[activePlayer] >= 50) {
+
+            // Ending the game
+
+            playing = false
+            dice.classList.add('hidden')
+
+            document
+                .querySelector(`.player--${activePlayer}`)
+                .classList.add('player--winner')
+            document
+                .querySelector(`.player--${activePlayer}`)
+                .classList.remove('player--active')
+
+        } else {
+
+            switchPlayer()
+
+        }
+
+    }
 
 })
