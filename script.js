@@ -116,6 +116,7 @@ btnNew.addEventListener('click', function () {
     player2.classList.remove('player--winner')
 
     // Reset active player to player 1
+    activePlayer = 0
     player1.classList.add('player--active')
     player2.classList.remove('player--active')
 
