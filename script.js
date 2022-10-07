@@ -105,15 +105,15 @@ btnNew.addEventListener('click', function () {
     currentScore = 0
 
     // Reset scoreboard and current score
-    document.querySelector(`#score--0`).textContent = scores[0]
-    document.querySelector(`#score--1`).textContent = scores[1]
+    score0.textContent = scores[0]
+    score1.textContent = scores[1]
 
-    document.querySelector(`#current--0`).textContent = 0
-    document.querySelector(`#current--1`).textContent = 0
+    current0.textContent = 0
+    current1.textContent = 0
 
     // Remove winner style
-    document.querySelector(`.player--0`).classList.remove('player--winner')
-    document.querySelector(`.player--1`).classList.remove('player--winner')
+    player1.classList.remove('player--winner')
+    player2.classList.remove('player--winner')
 
     // Reset active player to player 1
     player1.classList.add('player--active')
