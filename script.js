@@ -79,12 +79,8 @@ btnHold.addEventListener('click', function () {
             playing = false
             dice.classList.add('hidden')
 
-            document
-                .querySelector(`.player--${activePlayer}`)
-                .classList.add('player--winner')
-            document
-                .querySelector(`.player--${activePlayer}`)
-                .classList.remove('player--active')
+            document.querySelector(`.player--${activePlayer}`).classList.add('player--winner')
+            document.querySelector(`.player--${activePlayer}`).classList.remove('player--active')
 
         } else {
 
@@ -93,5 +89,35 @@ btnHold.addEventListener('click', function () {
         }
 
     }
+
+})
+
+btnNew.addEventListener('click', function () {
+
+    // Turn on playing mode
+    playing = true
+
+    // Reset scores array
+    scores[0] = 0
+    scores[1] = 0
+
+    // Reset currentScore
+    currentScore = 0
+
+    // Reset scoreboard and current score
+    document.querySelector(`#score--0`).textContent = scores[0]
+    document.querySelector(`#score--1`).textContent = scores[1]
+
+    document.querySelector(`#current--0`).textContent = 0
+    document.querySelector(`#current--1`).textContent = 0
+
+    // Remove winner style
+    document.querySelector(`.player--0`).classList.remove('player--winner')
+    document.querySelector(`.player--1`).classList.remove('player--winner')
+
+    // Reset active player to player 1
+    player1.classList.add('player--active')
+    player2.classList.remove('player--active')
+
 
 })
