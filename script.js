@@ -120,5 +120,9 @@ btnNew.addEventListener('click', function () {
     player1.classList.add('player--active')
     player2.classList.remove('player--active')
 
+    //Hide Dice
+
+    dice.classList.add('hidden')
+
 
 })
