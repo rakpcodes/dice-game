@@ -23,10 +23,50 @@ score0.textContent = 0
 score1.textContent = 0
 dice.classList.add('hidden')
 
-const scores = [0, 0]
-let currentScore = 0
-let activePlayer = 0
-let playing = true
+
+// Declare variables to use for init
+let scores, currentScore, activePlayer, playing
+
+const init = () => {
+
+    // Give variables initial values
+    scores = [0, 0]
+    currentScore = 0
+    activePlayer = 0
+    playing = true
+
+
+    // Reset scores array
+    scores[0] = 0
+    scores[1] = 0
+
+    // Reset currentScore
+    currentScore = 0
+
+    // Reset scoreboard and current score
+    score0.textContent = scores[0]
+    score1.textContent = scores[1]
+
+    current0.textContent = 0
+    current1.textContent = 0
+
+    // Remove winner style
+    player1.classList.remove('player--winner')
+    player2.classList.remove('player--winner')
+
+    // Reset active player to player 1
+    activePlayer = 0
+    player1.classList.add('player--active')
+    player2.classList.remove('player--active')
+
+    //Hide Dice
+
+    dice.classList.add('hidden')
+
+}
+
+init()
+
 
 //Settings when active player is changed
 const switchPlayer = () => {
@@ -94,35 +134,6 @@ btnHold.addEventListener('click', function () {
 
 btnNew.addEventListener('click', function () {
 
-    // Turn on playing mode
-    playing = true
-
-    // Reset scores array
-    scores[0] = 0
-    scores[1] = 0
-
-    // Reset currentScore
-    currentScore = 0
-
-    // Reset scoreboard and current score
-    score0.textContent = scores[0]
-    score1.textContent = scores[1]
-
-    current0.textContent = 0
-    current1.textContent = 0
-
-    // Remove winner style
-    player1.classList.remove('player--winner')
-    player2.classList.remove('player--winner')
-
-    // Reset active player to player 1
-    activePlayer = 0
-    player1.classList.add('player--active')
-    player2.classList.remove('player--active')
-
-    //Hide Dice
-
-    dice.classList.add('hidden')
-
+    init()
 
 })
